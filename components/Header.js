@@ -92,6 +92,7 @@ headerTemplate.innerHTML = `
 				<a href="../snake/snake.html">Snake</a>
 				<a href="../spacerace/spacerace.html">Space Race</a>
 				<a href="../breakout/breakout.html">Breakout</a>
+				<a href="https://github.com/etabeta1/RemoteControlledSpaceInvadersClone">Space Invaders</a>
 			</div>
 		</span>
 	</span>
