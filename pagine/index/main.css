@@ -1,0 +1,49 @@
+/* visualizzazione comune, sia desktop che mobile */
+body {
+	background-color: white;
+	font-family: "Verdana";
+}
+
+a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+.main-body {
+	z-index: 1;
+	background-color: #FFFEFC;
+	padding: 10px;
+	word-wrap: break-word;
+}
+
+/* visualizzazione desktop */
+@media screen and (min-width: 600px) {
+  .main-body {
+		width: 66%;
+		margin-left: 17%;
+	  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		margin-top: 48px;
+	}
+
+	.foto {
+		height: 128px;
+		width: 128px;
+		border-radius: 25%;
+		float: right;
+	}
+}
+
+/* visualizzazione mobile */
+@media screen and (max-width: 600px) {
+  .foto {
+		height: inherit;
+		width: inherit;
+		border-radius: 25%;
+	}
+
+	.div-foto {
+		height: 128px;
+		width: 128px;
+		margin: auto;
+	}
+}

@@ -1,0 +1,43 @@
+
+/* visualizzazione desktop */
+@media screen and (min-width: 600px) {
+  .visibile-mobile {
+    display: none;
+  }
+}
+
+/* visualizzazione mobile */
+@media screen and (max-width: 600px) {
+  .visibile-desktop {
+    display: none;
+  }
+}
+
+.canvas-div {
+  float: left;
+  padding-right: 20px;
+}
+
+.contenuto {
+  padding: 10px;
+  font-family: "Verdana";
+}
+
+.istruzioni {
+  position: relative;
+  padding-top: 20px;
+}
+
+.controllo {
+  height: 30px;
+}
+
+.tasto {
+  border: 1px solid grey;
+  font-weight: bold;
+  font-family: monospace;
+  background-color: #FAF0BE;
+  font-size: 20px;
+  padding: 5px;
+  margin: 5px;
+}
