@@ -87,7 +87,7 @@ headerTemplate.innerHTML = `
 			</div>
 		</span>
 		<span class="dropdown">
-			<span class="header-span">GIOCHI</span>
+			<span class="header-span">GIOCHI JS</span>
 			<div class="dropdown-content">
 				<a href="../snake/snake.html">Snake</a>
 				<a href="../spacerace/spacerace.html">Space Race</a>

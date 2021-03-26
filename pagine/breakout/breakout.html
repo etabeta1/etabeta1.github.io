@@ -187,6 +187,11 @@
 						youLose();
 					}
 
+					if(punti == 48) {
+						alert("hai vinto");
+						gameStatus = 2;
+					}
+
 					for(let i of Block.istanze){
 						if(i != ball){
 							let collisionResult = ball.collidesWith(i);
@@ -224,6 +229,7 @@
 									i.visible = false;
 									ball_speed += vel_increase;
 									punti++;
+
 								}
 							}
 						}
