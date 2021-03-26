@@ -41,6 +41,7 @@ headerTemplate.innerHTML = `
 	.dropdown {
 		position: relative;
 		display: inline-block;
+		z-index: 2;
 	}
 
 	/* Dropdown Content (Hidden by Default) */
@@ -50,7 +51,7 @@ headerTemplate.innerHTML = `
 		background-color: #f1f1f1;
 		min-width: 160px;
 		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-		z-index: 1;
+		z-index: 2;
 	}
 
 	/* Links inside the dropdown */
@@ -59,6 +60,7 @@ headerTemplate.innerHTML = `
 		padding: 12px 16px;
 		text-decoration: none;
 		display: block;
+		z-index: 2;
 	}
 
 	/* Change color of dropdown links on hover */
