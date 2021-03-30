@@ -13,27 +13,21 @@
   }
 }
 
-.canvas-div {
-  z-index: 0;
-}
-
 canvas {
-  float: left;
-  z-index: 0;
-  padding-right: 20px;
+  z-index: 2;
 }
 
 .contenuto {
   padding: 10px;
   font-family: "Verdana";
-  z-index: 0;
 }
 
-.istruzioni {
-  position: relative;
-  padding-top: 20px;
+table td {
+  display: table-cell;
+  vertical-align: top;
 }
 
+/* css per i tasti */
 .controllo {
   height: 30px;
 }

@@ -101,6 +101,7 @@ var player;
 var points = 0;
 var bullets = [];
 var MAX_BULLETS = 10;
+var CURR_MAX_BULLETS;
 var WINDOW_WIDTH, WINDOW_HEIGHT;
 var BULLET_WIDTH = 10, BULLET_HEIGHT = 10;
 
@@ -166,7 +167,7 @@ function spawnBullet() {
     );
     b.setSpeed(0, 0, .02),
     bullets.push(b);
-    setTimeout(() => {bullets.shift()}, 1500);    //elimina in proiettile dopo 1.5 secondi
+    setTimeout(() => {bullets.shift()}, 2500);    //elimina in proiettile dopo 2.5 secondi
   }
 }
 
@@ -190,8 +191,8 @@ function update(ts) {
         e.respawn();
         points++;
         setTimeout(createNewEnemy, 250);
-        if(Math.round(Math.random() * MAX_BULLETS) == 1) {
-          MAX_BULLETS++;
+        if(Math.round(Math.random() * CURR_MAX_BULLETS) == 1) {
+          CURR_MAX_BULLETS++;
           //piccola probabilità di vincere un proiettile bonus
           //diminuisce con l'aumentare dei proiettili vinti;
         }
@@ -213,7 +214,8 @@ function render() {
     ctx.fillStyle = "#FFFFFF";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    let entitiesToRender = [...enemies, player, ...bullets].sort((a, b) => {distance(a, camera) > distance(b, camera)});
+    //let entitiesToRender = [...enemies, player, ...bullets].sort((a, b) => {distance(a, camera) > distance(b, camera)});
+    let entitiesToRender = [...enemies, player, ...bullets].sort((a, b) => {return a.z < b.z});
     for(let e of entitiesToRender) {
       e.render();
     }
@@ -222,7 +224,7 @@ function render() {
     ctx.font = "18px Verdana";
     ctx.fillText("punti: " + points, 20, 20);
 
-    for(let i = 0; i < MAX_BULLETS - bullets.length; i++) {
+    for(let i = 0; i < CURR_MAX_BULLETS - bullets.length; i++) {
       ctx.fillStyle = "#00FFFF";
       ctx.strokeStyle = "#000000";
       ctx.beginPath()
@@ -242,6 +244,9 @@ function render() {
 
 function reset() {
   gameStatus = 1;
+  points = 0;
+  enemies = [];
+  CURR_MAX_BULLETS = MAX_BULLETS;
   for(let i = 0; i < 10; i++) {
     setTimeout(createNewEnemy, i * 100);
   }
