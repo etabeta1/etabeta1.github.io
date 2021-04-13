@@ -29,7 +29,7 @@ table td {
 
 /* css per i tasti */
 .controllo {
-  height: 30px;
+  min-height: 30px;
 }
 
 .tasto {
