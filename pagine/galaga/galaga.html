@@ -16,39 +16,39 @@
 		<canvas>get a better browser bro!</canvas>
 		<script>
 			'use strict';
-			
+
 			var canvas;
 			var ctx;
 			var s;
 			var points = 0;
-			
+
 			var CANVAS_HEIGHT = 600;
 			var CANVAS_WIDTH = 852;
-			
+
 			var SPACESHIP_BASE_SIZE = 32;
-			
+
 			var BG_H = 480;
 			var BG_IMAGE = new Image();
 			var bg_y_pos = [-BG_H, 0, BG_H];
-			
+
 			var MOUSE_X;
 			var MOUSE_Y;
-			
+
 			var player;
 			var PLAYER_IMAGE = "img/player.png";
 			var PLAYER_STARTING_LIVES = 3;
-			
+
 			var BULLET_SIZE = 6;
 			var STARTING_BULLET = 10;
 			var BULLET_RECHARGE_DELAY = 3500;
-	
+
 			class Point {
 				constructor(x, y){
 					this.x = x;
 					this.y = y;
 				}
 			}
-			
+
 			class SpaceShip {
 				static ships = [];
 				constructor(position, path_to_img, scale){
@@ -62,9 +62,9 @@
 					SpaceShip.ships.push(this);
 				}
 				shoot(){
-	
+
 				}
-				
+
 				static render(){
 					for(let ss of SpaceShip.ships){
 						if(ss.visible)
@@ -73,7 +73,7 @@
 							ss.height = SPACESHIP_BASE_SIZE * ss.scale;
 					}
 				}
-				
+
 				static move(timestamp){
 					timestamp /= 250;
 					for(let ss of SpaceShip.ships){
@@ -81,10 +81,10 @@
 							ss.position.x = ss.starting_position.x + Math.sin(timestamp) * ss.magnitude;
 						}
 					}
-					
+
 				}
 			}
-			
+
 			class Player {
 				constructor(){
 					this.height = 128;
@@ -95,7 +95,7 @@
 					this.bullet = STARTING_BULLET;
 					this.lives = PLAYER_STARTING_LIVES;
 				}
-				
+
 				update(){
 					let newpos = MOUSE_X - this.width / 2 - canvas.offsetLeft;
 					if(newpos < 0)
@@ -104,11 +104,11 @@
 						newpos = CANVAS_WIDTH - this.width;
 					this.position.x = newpos;
 				}
-				
+
 				render(){
 					ctx.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
 				}
-				
+
 				shoot(){
 					//non funziona, vedi player_shoot;
 					new Bullet(new Point(this.position.x + this.width / 2 - BULLET_SIZE / 2, this.position.y - 5), new Point(0, -2.5), last_timestamp);
@@ -117,7 +117,7 @@
 					console.log(this)
 				}
 			}
-			
+
 			class Bullet {
 				static instances = []
 				constructor(position, direction, timestamp){
@@ -128,7 +128,7 @@
 					this.width = BULLET_SIZE;
 					this.height = BULLET_SIZE;
 				}
-				
+
 				update(timestamp){
 					this.position.x = this.position.x + this.direction.x * (timestamp - this.timestampCreated) / 100;
 					this.position.y = this.position.y + this.direction.y * (timestamp - this.timestampCreated) / 100;
@@ -139,33 +139,33 @@
 								idx = i;
 								break;
 							}
-						}						
+						}
 					}
 					if(idx != -1)
 						Bullet.instances.splice(idx, 1);
-					
+
 				}
-				
+
 				render(){
 					ctx.fillStyle = "yellow";
 					ctx.fillRect(this.position.x, this.position.y, 10, 10);
 				}
-				
+
 				collidesWith(other){
 				/*
 					let a = this.position.x + this.width < other.position.x;
 					let b = this.position.y + this.height < other.position.y;
 					let c = this.position.x > other.position.x + other.width;
 					let d = this.position.y > other.position.y + other.height;
-					
+
 					console.log(a);
 					console.log(b);
 					console.log(c);
 					console.log(d);
-					
+
 					return !(a || b || c || d);
 					*/
-				
+
 					/*
 					let result1 = other.position.x >= this.position.x && other.position.y >= this.position.y && other.position.x <= (this.position.x + this.width) && other.position.y <= (this.position.y + this.height);
 					let result2 = other.position.x >= this.position.x && other.position.y <= this.position.y && other.position.x <= (this.position.x + this.width) && (other.position.y + other.height) <= (this.position.y + this.height);
@@ -173,18 +173,18 @@
 					let result4 = other.position.x <= this.position.x && other.position.y <= this.position.y && (other.position.x + other.width) >= this.position.x && (other.position.y + other.height) >= this.position.y;
 					return (result1 || result2 || result3 || result4);
 					*/
-					
+
 					/*
 					let r1x = this.position.x;
 					let r1w = this.width;
 					let r1h = this.height;
 					let r1y = this.position.width;
-					
+
 					let r2x = other.position.x;
 					let r2w = other.width;
 					let r2h = other.height;
 					let r2y = other.position.y
-					
+
 					if (r1x + r1w >= r2x &&    // r1 right edge past r2 left
 						r1x <= r2x + r2w &&    // r1 left edge past r2 right
 						r1y + r1h >= r2y &&    // r1 top edge past r2 bottom
@@ -204,7 +204,7 @@
 					}
 
 				}
-				
+
 				disappear(){
 					let idx = -1;
 					for(let i = 0; i < Bullet.instances.length; i++){
@@ -217,28 +217,28 @@
 						Bullet.instances.splice(idx, 1);
 				}
 			}
-			
+
 			class PowerUp {
 				constructor(position){
-				
+
 				}
-				
+
 				update(){
-				
+
 				}
-				
+
 				render(){
-				
+
 				}
 			}
-			
+
 			function update(timestamp){
 				//console.log("update");
 				SpaceShip.move(timestamp);
 				for(let i of Bullet.instances)
 					i.update(timestamp);
 				player.update();
-				
+
 				for(let b of Bullet.instances){
 					if(b.collidesWith(player)){
 						stopGame();
@@ -254,28 +254,28 @@
 						}
 					}
 				}
-				
+
 			}
-			
+
 			var last_timestamp = new Date().getTime();
 			function draw(timestamp){
 				//console.log("draw");
 				last_timestamp = timestamp;
 				update(timestamp);
-				
-			
+
+
 				for(let i = 0; i < 3; i++){
 					ctx.drawImage(BG_IMAGE, 0, bg_y_pos[i]);
 					bg_y_pos[i]++;
 					if(bg_y_pos[i] > CANVAS_HEIGHT)
 						bg_y_pos[i] = bg_y_pos[(i + 1) % 3] - BG_H;
 				}
-			
+
 				SpaceShip.render();
 				for(let i of Bullet.instances)
 					i.render(timestamp);
 				player.render();
-				
+
 				for(let i = 0; i < player.bullet; i++){
 					ctx.fillStyle = "yellow";
 					ctx.fillRect(30 + 20 * i, CANVAS_HEIGHT - 30, 10, 20);
@@ -284,10 +284,10 @@
 					ctx.fillStyle = "red";
 					ctx.fillRect(CANVAS_WIDTH - (30 + 20 * i), CANVAS_HEIGHT - 30, 10, 20);
 				}
-				
+
 				requestAnimationFrame(draw);
 			}
-			
+
 			function generateShips(){
 				for(let i = 0; i < 6; i++){
 					for(let j = 0; j < 3; j++){
@@ -295,18 +295,18 @@
 					}
 				}
 			}
-			
+
 			function start(){
 				while(!lose){
-					
+
 				}
 			}
-			
+
 			function player_shoot(){
 				if(player.bullet > 0){
 					new Bullet(
 						new Point(
-							player.position.x + player.width / 2 - BULLET_SIZE / 2, 
+							player.position.x + player.width / 2 - BULLET_SIZE / 2,
 							player.position.y - 15
 						),
 						new Point(0, -1),
@@ -318,21 +318,21 @@
 					}, BULLET_RECHARGE_DELAY);
 				}
 			}
-			
+
 			function stopGame(){
 				console.log("stop game");
 			}
 			function youLose(){
 				console.log("you lose with " + points + " points");
 			}
-			
+
 			window.onload = () =>{
 				console.log("If you see this, random comploments to you!")
 				console.log("This game is made by Andrea Oggioni");
 				console.log("Please check out my github (there aren't a lot of things)");
 				console.log("https://github.com/etabeta1");
-			
-			
+
+
 				canvas = document.querySelector("canvas");
 				ctx = canvas.getContext("2d");
 				canvas.height = CANVAS_HEIGHT;
@@ -342,12 +342,12 @@
 				//start();
 				player = new Player();
 				draw();
-				
+
 				document.addEventListener("mousemove", (e) => {
 					MOUSE_X = e.clientX;
 					MOUSE_Y = e.clientY;
 				});
-				
+
 				/*
 				document.addEventListener("click", shoot, 1);
 				//if i do player.shoot, the this in player.shoot will refer to the document
@@ -355,14 +355,14 @@
 				*/
 				//document.addEventListener("click", player.shoot.bind(player), false);
 				//document.addEventListener("click", player_shoot.bind(player));
-				
+
 				document.addEventListener("click", player_shoot);
-				
+
 				/*
 				setInterval(SpaceShip.move, 1);
 				setInterval(player.update, 1);
 				*/
-				
+
 				//setInterval(update, 1);
 			}
 		</script>
