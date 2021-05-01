@@ -99,6 +99,12 @@ headerTemplate.innerHTML = `
 				<a href="https://github.com/etabeta1/RemoteControlledSpaceInvadersClone">Space Invaders (no JS)</a>
 			</div>
 		</span>
+		<span class="dropdown">
+			<span class="header-span">GUIDE</span>
+			<div class="dropdown-content">
+				<a href="../ComandiConfigurazioneRouterSwitchCisco/index.html">Guida ai comandi per la configurazione di switch e router Cisco</a>
+			</div>
+		</span>
 	</span>
 
 </header>

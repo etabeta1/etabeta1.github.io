@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Guida comandi configurazione router e switch Cisco</title>
+		<script src="../../components/Header.js"></script>
+		<link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="comandi.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<header-component></header-component>
+    <div class="main-body">
+      <h2>Configurazione di base per switch e router</h2>
+      <p class="comando">
+        <h3 class="sezione">Impostare il nome</h3>
+        <div class="codice">Switch(config)# hostname [NuovoNome]</div>
+        <div class="spiegazione">Il nome non può contenere spazi.</div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Configurazione password di una linea</h3>
+        <div class="codice">
+          Switch(config)# line [Linea] [Numero] <br />
+          Switch(config-line)# password [Password] <br />
+          Switch(config-line)# login <br />
+          Switch(config-line)# end <br />
+        </div>
+        <div class="spiegazione">La password può contenere spazi all'interno, numeri, lettere e simboli.</div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Impostare password di EXEC privilegiato</h3>
+        <div class="codice">Switch(config)# enable secret [Password]</div>
+        <div class="spiegazione">Per impostare una password criptata, oppure</div>
+        <div class="codice">Switch(config)# enable password [Password]</div>
+        <div class="spiegazione">per una password non criptata</div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Criptare tutte le password</h3>
+        <div class="codice">Switch(config)# service password-encryption</div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Mostrare la configurazione</h3>
+        <div class="codice">Switch# show [FileDiConfigurazione]</div>
+        <div class="spiegazione">I file possono essere <span class="codice">startup-config</span> o <span class="codice">running-config</span>.</div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Creazione di un banner</h3>
+        <div class="codice">Switch(config)# banner motd "[MessaggioDaMostrare]"</div>
+        <div class="spiegazione">Al posto delle virgolette, può essere usato qualsiasi carattere che non compare all'interno del banner.</div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Salvataggio della running-config nella startup-config</h3>
+        <div class="codice">Switch# copy running-config startup-config</div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Abilitare IPv6 su in un router</h3>
+        <div class="codice">Router(config)# ipv6 unicast-routing</div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Configurazione IPv4 e IPv6 di un'interfaccia o di una vlan</h3>
+        <div class="codice">
+          Switch(config)# interface [Interfaccia] [Numero] <br />
+          Switch(config-if)# ip address [Ip] [SubnetMask] <br />
+          Switch(config-if)# ipv6 address [Ip]/[LunghezzaPrefisso] <br />
+          Switch(config-if)# ipv6 address [Ip] link-local <br />
+          Switch(config-if)# no shutdown <br />
+        </div>
+        <div class="spiegazione">Per completare la configurazione della vlan, si necessita anche di impostare il default gateway.</div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Impostare il default gateway</h3>
+        <div class="codice">Switch(config)# ip default-gateway [Ip]</div>
+        <div class="spiegazione"></div>
+      </p>
+      <hr />
+      <h2>Configurazione di base router (si applica in aggiunta alle configurazioni precedenti)</h2>
+      <p class="comando">
+        <h3 class="sezione">Configurare il router per ricevere connessioni ssh e telnet</h3>
+        <div class="codice">
+          Router(config)# line vty [Da] [A] <br />
+          Router(config)# transport input [&lt;ssh&gt; &lt;telnet&gt;] <br />
+        </div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Aggiungere una descrizione ad un'interfaccia</h3>
+        <div class="codice">Router(config-if)# description [Descrizione]</div>
+        <div class="spiegazione">La descrizione può essere lunga fino a 240 caratteri</div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Verificare la configurazione delle interfacce, mostrare le interfacce, mostrare le route</h3>
+        <div class="codice">
+          Router# show ip interface brief <br />
+          Router# show ipv6 interface brief <br />
+          Router# show ip interfaces <br />
+          Router# show ipv6 interfaces <br />
+          Router# show ip route <br />
+          Router# show ipv6 route <br />
+        </div>
+        <div class="spiegazione"></div>
+      </p>
+      <hr />
+      <h2>Messa in sicurezza dei dispositivi</h2>
+      <p class="comando">
+        <h3 class="sezione">Attivare il sistema Cisco Auto Secure</h3>
+        <div class="codice">Router# auto secure</div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Impostare la lunghezza minima della password</h3>
+        <div class="codice">Router(config)# security passwords min-length [LunghezzaMinima]</div>
+        <div class="spiegazione">E' consigliabile una lunghezza minima di 10 caratteri</div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Impostare il timeout e numero massimo di tentativi</h3>
+        <div class="codice">
+          Router(config)# login block-for [TempoDiBloccoInSecondi] attempts [NumeroDiTentativi] within [TempoInSecondi] <br />
+          Router(config-line)# exec-timeout [Minuti] [Secondi]
+        </div>
+        <div class="spiegazione"><span class="codice">exec-timeout</span> manda un <span class="codice">disable</span> dopo il tempo di inattività specificato.</div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Configurazione e abilitazione connessioni con SSH</h3>
+        <div class="codice">
+          Router(config)# ip domain nam [NomeDiDominio <br />
+          Router(config)# crypto key generate rsa general-keys modulus [Modulo] <br />
+          Router(config)# username [Username] secret [Password] <br />
+          Router(config)# line vty [Da] [A] <br />
+          Router(config-line)# login local <br />
+          Router(config-line)# transport input ssh
+        </div>
+        <div class="spiegazione">
+          Il modulo è la lunghezza della chiave (da 360 a 2048, consigliato 1024). <br />
+          Username e Password sono le credenziali dell'utente che si utilizzeranno per connettersi al dispositivo (l'utente appena creato verrà aggiunto al DB locale) <br />
+          Si usa <span class="codice">secret</span> per fare in modo che la password sia criptata. <br />
+          In <span class="codice">login local</span>, il comando <span class="codice">local</span> indica che l'utente verrà autenticato basandosi sul DB locale. <br />
+        </div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Disabilitare servizi inutili e porte aperte inutili</h3>
+        <div class="spiegazione">Prima di tutto si visualizzano le porte e i servizi aperti:</div>
+        <div class="codice">Router# show ip ports all</div>
+        <div class="spiegazione">oppure, con dispositivi più vecchi:</div>
+        <div class="codice">Router# show control-plane host open-ports</div>
+        <div class="spiegazione">poi, per stoppare il server http:</div>
+        <div class="codice">Router(config)# no ip http server</div>
+        <div class="spiegazione">e per stoppare il telnet:</div>
+        <div class="codice">Router(config-line)# transport input ssh</div>
+      </p>
+      <hr />
+      <h2>Altre configurazioni</h2>
+      <p>TODO: dhcp, ip route</p>
+      <p class="comando">
+        <h3 class="sezione"></h3>
+        <div class="codice"></div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione"></h3>
+        <div class="codice"></div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione"></h3>
+        <div class="codice"></div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione"></h3>
+        <div class="codice"></div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione"></h3>
+        <div class="codice"></div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione"></h3>
+        <div class="codice"></div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione"></h3>
+        <div class="codice"></div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione"></h3>
+        <div class="codice"></div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione"></h3>
+        <div class="codice"></div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione"></h3>
+        <div class="codice"></div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione"></h3>
+        <div class="codice"></div>
+        <div class="spiegazione"></div>
+      </p>
+    </div>
+	</body>
+</html>
