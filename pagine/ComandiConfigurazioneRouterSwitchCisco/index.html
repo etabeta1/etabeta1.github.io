@@ -31,7 +31,7 @@
         <div class="codice">Switch(config)# enable secret [Password]</div>
         <div class="spiegazione">Per impostare una password criptata, oppure</div>
         <div class="codice">Switch(config)# enable password [Password]</div>
-        <div class="spiegazione">per una password non criptata</div>
+        <div class="spiegazione">per una password non criptata.</div>
       </p>
       <p class="comando">
         <h3 class="sezione">Criptare tutte le password</h3>
@@ -80,14 +80,14 @@
         <h3 class="sezione">Configurare il router per ricevere connessioni ssh e telnet</h3>
         <div class="codice">
           Router(config)# line vty [Da] [A] <br />
-          Router(config)# transport input [&lt;ssh&gt; &lt;telnet&gt;] <br />
+          Router(config-line)# transport input [&lt;ssh&gt; &lt;telnet&gt;] <br />
         </div>
         <div class="spiegazione"></div>
       </p>
       <p class="comando">
         <h3 class="sezione">Aggiungere una descrizione ad un'interfaccia</h3>
         <div class="codice">Router(config-if)# description [Descrizione]</div>
-        <div class="spiegazione">La descrizione può essere lunga fino a 240 caratteri</div>
+        <div class="spiegazione">La descrizione può essere lunga fino a 240 caratteri.</div>
       </p>
       <p class="comando">
         <h3 class="sezione">Verificare la configurazione delle interfacce, mostrare le interfacce, mostrare le route</h3>
@@ -111,7 +111,7 @@
       <p class="comando">
         <h3 class="sezione">Impostare la lunghezza minima della password</h3>
         <div class="codice">Router(config)# security passwords min-length [LunghezzaMinima]</div>
-        <div class="spiegazione">E' consigliabile una lunghezza minima di 10 caratteri</div>
+        <div class="spiegazione">E' consigliabile una lunghezza minima di 10 caratteri.</div>
       </p>
       <p class="comando">
         <h3 class="sezione">Impostare il timeout e numero massimo di tentativi</h3>
@@ -133,7 +133,7 @@
         </div>
         <div class="spiegazione">
           Il modulo è la lunghezza della chiave (da 360 a 2048, consigliato 1024). <br />
-          Username e Password sono le credenziali dell'utente che si utilizzeranno per connettersi al dispositivo (l'utente appena creato verrà aggiunto al DB locale) <br />
+          Username e Password sono le credenziali dell'utente che si utilizzeranno per connettersi al dispositivo (l'utente appena creato verrà aggiunto al DB locale). <br />
           Si usa <span class="codice">secret</span> per fare in modo che la password sia criptata. <br />
           In <span class="codice">login local</span>, il comando <span class="codice">local</span> indica che l'utente verrà autenticato basandosi sul DB locale. <br />
         </div>
@@ -151,62 +151,31 @@
       </p>
       <hr />
       <h2>Altre configurazioni</h2>
-      <p>TODO: dhcp, ip route</p>
+      <p class="comando">
+        <h3 class="sezione">Assegnare le rotte statiche</h3>
+        <div class="codice">Router(config)# ip route [ReteDestinazionePacchetto] [SubnetMaskDestinazionePacchetto] [DestinazioneACuiInoltrareIlPacchetto]</div>
+        <div class="spiegazione"></div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Impostare il DHCP</h3>
+        <div class="codice">
+					Router(config)# ip dhcp pool [NomePoolDaConfigurare] <br />
+					Router(dhcp-config)# network [Rete] [SubnetMask] <br />
+					Router(dhcp-config)# default-router [DefaultGateway] <br />
+					Router(dhcp-config)# dns-server [ServerDNS] <br />
+					Router(dhcp-config)# domain-name [NomeDiDominio] <br />
+					Router(dhcp-config)# lease [Giorni] [Ore] [Minuti] <br />
+					Router(config)# ip dhcp excluded-address [Da] [A]
+				</div>
+        <div class="spiegazione">Per impostare un tempo di lease infinito, si può usare</div>
+				<div class="codice">Router(dhcp-config)# lease infinite</div>
+      </p>
+			<!--
       <p class="comando">
         <h3 class="sezione"></h3>
         <div class="codice"></div>
         <div class="spiegazione"></div>
-      </p>
-      <p class="comando">
-        <h3 class="sezione"></h3>
-        <div class="codice"></div>
-        <div class="spiegazione"></div>
-      </p>
-      <p class="comando">
-        <h3 class="sezione"></h3>
-        <div class="codice"></div>
-        <div class="spiegazione"></div>
-      </p>
-      <p class="comando">
-        <h3 class="sezione"></h3>
-        <div class="codice"></div>
-        <div class="spiegazione"></div>
-      </p>
-      <p class="comando">
-        <h3 class="sezione"></h3>
-        <div class="codice"></div>
-        <div class="spiegazione"></div>
-      </p>
-      <p class="comando">
-        <h3 class="sezione"></h3>
-        <div class="codice"></div>
-        <div class="spiegazione"></div>
-      </p>
-      <p class="comando">
-        <h3 class="sezione"></h3>
-        <div class="codice"></div>
-        <div class="spiegazione"></div>
-      </p>
-      <p class="comando">
-        <h3 class="sezione"></h3>
-        <div class="codice"></div>
-        <div class="spiegazione"></div>
-      </p>
-      <p class="comando">
-        <h3 class="sezione"></h3>
-        <div class="codice"></div>
-        <div class="spiegazione"></div>
-      </p>
-      <p class="comando">
-        <h3 class="sezione"></h3>
-        <div class="codice"></div>
-        <div class="spiegazione"></div>
-      </p>
-      <p class="comando">
-        <h3 class="sezione"></h3>
-        <div class="codice"></div>
-        <div class="spiegazione"></div>
-      </p>
+      </p>-->
     </div>
 	</body>
 </html>
