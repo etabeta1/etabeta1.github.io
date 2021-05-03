@@ -91,11 +91,12 @@ headerTemplate.innerHTML = `
 		<span class="dropdown">
 			<span class="header-span">GIOCHI JS</span>
 			<div class="dropdown-content">
-				<a href="../snake/snake.html">Snake</a>
+
+				<!--<a href="../snake/snake.html">Snake</a>-->
 				<a href="../spacerace/spacerace.html">Space Race</a>
 				<a href="../breakout/breakout.html">Breakout</a>
 				<a href="../cubeShooter2.5D/cubeShooter2.5D.html">CubeShooter2.5D</a>
-				<a href="../galaga/galaga.html">Galaga</a>
+				<!--<a href="../galaga/galaga.html">Galaga</a>-->
 				<a href="https://github.com/etabeta1/RemoteControlledSpaceInvadersClone">Space Invaders (no JS)</a>
 			</div>
 		</span>
