@@ -124,7 +124,7 @@
       <p class="comando">
         <h3 class="sezione">Configurazione e abilitazione connessioni con SSH</h3>
         <div class="codice">
-          Router(config)# ip domain nam [NomeDiDominio <br />
+          Router(config)# ip domain name [NomeDiDominio] <br />
           Router(config)# crypto key generate rsa general-keys modulus [Modulo] <br />
           Router(config)# username [Username] secret [Password] <br />
           Router(config)# line vty [Da] [A] <br />
@@ -139,6 +139,8 @@
 					Per utilizzare SSH versione 2, bisogna utilizzare
         </div>
 				<div class="codice">Router(config)# ip ssh version 2</div>
+				<div class="spiegazione">Per impostre un timeout</div>
+				<div class="codice">Router(config)# ip ssh timeout [TempoInSecondi]</div>
       </p>
       <p class="comando">
         <h3 class="sezione">Disabilitare servizi inutili e porte aperte inutili</h3>
