@@ -110,6 +110,9 @@ var D = 1/Math.tan(FOV/2);
 
 var gameStatus = 0;
 
+var sfondo = new Image();
+sfondo.src = "sfondo.jpg";
+
 var mouse_x = 0, mouse_y = 0;
 
 function drawPolygon(ctx, fillColor, points) {
@@ -211,8 +214,9 @@ function update(ts) {
 
 function render() {
   if(gameStatus != 2) {
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    //ctx.fillStyle = "#FFFFFF";
+    //ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(sfondo, 0, 0, canvas.width, canvas.height);
 
     //let entitiesToRender = [...enemies, player, ...bullets].sort((a, b) => {distance(a, camera) > distance(b, camera)});
     let entitiesToRender = [...enemies, player, ...bullets].sort((a, b) => {return a.z < b.z});
