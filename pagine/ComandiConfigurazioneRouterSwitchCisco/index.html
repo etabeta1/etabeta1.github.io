@@ -154,6 +154,49 @@
         <div class="codice">Router(config-line)# transport input ssh</div>
       </p>
       <hr />
+      <h2>Configurazione VLAN</h2>
+      <p class="comando">
+        <h3 class="sezione">Configurare VLAN sullo switch</h3>
+        <div class="spiegazione">Prima di tutto, bisogna creare le VLAN, assegnando a ciascuna di esse un numero ed una descrizione facoltativa</div>
+        <div class="codice">
+          Switch(config)# vlan [Numero]<br/>
+          Switch(config-vlan)# name [Descrizione]
+        </div>
+        <div class="spiegazione">Successivamente bisonga configurare le varie interfacce in trunk</div>
+        <div class="codice">
+          Switch(config-if)# switchport access vlan [NumeroVlan]
+        </div>
+        <div class="spiegazione">
+          oppure in trunk
+        </div>
+        <div class="codice">
+          Switch(config-if)# switchport mode trunk<br />
+          Switch(config-if)# switchport trunk allowed vlan [&lt;add&gt;/&lt;all&gt;/&lt;except&gt;/&lt;none&gt;/&lt;remove&gt] [NumeroVlanSeRichiesto]
+        </div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Configurare VLAN sul router</h3>
+        <div class="spiegazione">Per ogni VLAN collegata all'interfaccia del router</div>
+        <div class="codice">
+          Router(config)# interface [Interfaccia].[NumeroSottointerfaccia]<br />
+          Router(config-subif)# encapsulation dot1q [NumeroVlan]<br />
+          Router(config-subif)# ip address [IndirizzoInterfaccia] [SubnetMask]<br />
+          Router(config-subif)# no shutdown
+        </div>
+        <div class="spiegazione">Infine, per sicurezza, è sempre meglio accendere anche l'interfaccia principale che ha come sottointerfacce le sottointerfacce configurate precedentemente</div>
+        <div class="codice">
+          Router(config-if)# no shutdown
+        </div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Mostrare la configurazione attuale delle VLAN</h3>
+        <div class="codice">
+          Router(config-if)# do show vlan brief<br />
+          Router(config)# show vlan brief
+        </div>
+        <div class="spiegazione">Notare che i due comandi appena elencati fanno esattamente la stessa cosa ma da due modalità di configurazione diverse</div>
+      </p>
+      <hr />
       <h2>Altre configurazioni</h2>
       <p class="comando">
         <h3 class="sezione">Assegnare le rotte statiche</h3>
