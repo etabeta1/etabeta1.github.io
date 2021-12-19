@@ -16,34 +16,79 @@ a:visited {
 	word-wrap: break-word;
 }
 
+.foto-piccola {
+	height: 128px;
+	width: 128px;
+	border-radius: 25%;
+	float: right;
+}
+
+.foto-grande {
+	width: 512px;
+	border-radius: 25px;
+	float: right;
+	max-width: 100%;
+}
+
+.intestazione::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+
+/* per la lista di post */
+
+div.posts {
+	margin: 20px;
+}
+
+div.posts>ul {
+	padding: 0;
+	list-style-type: none;
+	width: calc(100% - 30px);
+}
+
+div.posts>ul>li.post>img {
+	margin-right: 20px;
+	margin-bottom: 10px;
+	float: left;
+	width: 33%;
+}
+
+div.posts>ul>li.post {
+	padding: 10px;
+	overflow: auto;
+	width: 100%;
+}
+
+div.posts>ul>li.post:hover {
+	background: #eee;
+	cursor: pointer;
+}
+
+
 /* visualizzazione desktop */
 @media screen and (min-width: 600px) {
-  .main-body {
+	.main-body {
 		width: 66%;
 		margin-left: 17%;
-	  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 		margin-top: 48px;
 	}
 
-	.foto {
-		height: 128px;
-		width: 128px;
-		border-radius: 25%;
-		float: right;
-	}
+
+
 }
 
 /* visualizzazione mobile */
 @media screen and (max-width: 600px) {
-  .foto {
-		height: inherit;
-		width: inherit;
-		border-radius: 25%;
-	}
 
 	.div-foto {
+		/*
 		height: 128px;
 		width: 128px;
+		*/
 		margin: auto;
 	}
 }
