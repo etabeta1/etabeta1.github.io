@@ -106,6 +106,7 @@ headerTemplate.innerHTML = `
 				<a href="../ComandiConfigurazioneRouterSwitchCisco/index.html">Guida ai comandi per la configurazione di switch e router Cisco</a>
 			</div>
 		</span>
+		<span class="header-span"><a href="../curriculum/curriculum.html">CHI SONO</a></span>
 	</span>
 
 </header>
