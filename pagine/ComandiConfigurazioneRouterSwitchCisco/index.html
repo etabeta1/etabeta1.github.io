@@ -226,7 +226,8 @@
         <div class="spiegazione">altrimenti, se l'interfacci è rivolta verso una rete pubblica,</div>
         <div class="codice">Router(config-interface)# ip nat outside</div>
         <div class="spiegazione">Una volta impostato il NAT, potrebbe essere necessario impostare un port forwarding in modo da poter accedere dall'esterno ad un server nella rete privata</div>
-        <div class="codice">Router(config)# ip nat inside source static [IP Interno] [Porta Interna] [IP esterno] [Porta Esterna]</div>
+        <div class="codice">Router(config)# ip nat inside source static [ProtocolloTrasporto] [IP Interno] [Porta Interna] [IP esterno] [Porta Esterna]</div>
+        <div class="spiegazione">il protocollo di trasporto può essere <span class="codice">tcp</span> oppure <span class="codice">udp</span> oppure può essere direttamente omesso.</div>
         <div class="spiegazione">E' inoltre necessario impostare una access list per specificare gli host che useranno NAT</div>
         <div class="codice">
           Router(config)# access-list [NumeroAccessList] permit [IP] [Wildcard] <br />
