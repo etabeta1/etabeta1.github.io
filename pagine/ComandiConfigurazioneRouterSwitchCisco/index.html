@@ -217,12 +217,24 @@
         <div class="spiegazione">Per impostare un tempo di lease infinito, si può usare</div>
 				<div class="codice">Router(dhcp-config)# lease infinite</div>
       </p>
+      <p class="comando">
+        <h3 class="sezione">Impostare il NAT</h3>
+        <div class="spiegazione">Prima di tutto bisogna selezionare l'interfaccia che si vuole configurare</div>
+        <div class="codice">Router(config)# interface [Interfaccia]</div>
+        <div class="spiegazione">poi, se l'interfaccia è rivolta verso la rete privata,</div>
+        <div class="codice">Router(config-interface)# ip nat inside</div>
+        <div class="spiegazione">altrimenti, se l'interfacci è rivolta verso una rete pubblica,</div>
+        <div class="codice">Router(config-interface)# ip nat outside</div>
+        <div class="spiegazione">Una volta impostato il NAT, potrebbe essere necessario impostare un port forwarding in modo da poter accedere dall'esterno ad un server nella rete privata</div>
+        <div class="codice">Router(config)# ip nat inside source static [IP Interno] [Porta Interna] [IP esterno] [Porta Esterna]</div>
+      </p>
 			<!--
       <p class="comando">
         <h3 class="sezione"></h3>
         <div class="codice"></div>
         <div class="spiegazione"></div>
-      </p>-->
+      </p>
+      -->
     </div>
 	</body>
 </html>
