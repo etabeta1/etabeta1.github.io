@@ -227,6 +227,11 @@
         <div class="codice">Router(config-interface)# ip nat outside</div>
         <div class="spiegazione">Una volta impostato il NAT, potrebbe essere necessario impostare un port forwarding in modo da poter accedere dall'esterno ad un server nella rete privata</div>
         <div class="codice">Router(config)# ip nat inside source static [IP Interno] [Porta Interna] [IP esterno] [Porta Esterna]</div>
+        <div class="spiegazione">E' inoltre necessario impostare una access list per specificare gli host che useranno NAT</div>
+        <div class="codice">
+          Router(config)# access-list [NumeroAccessList] permit [IP] [Wildcard] <br />
+          Router(config)# ip nat inside source list [NumeroAccessList] interface [Interfaccia Esterna] overload
+        </div>
       </p>
       <div class="comando">
         <h3 class="sezione">Impostare il RIP</h3>
