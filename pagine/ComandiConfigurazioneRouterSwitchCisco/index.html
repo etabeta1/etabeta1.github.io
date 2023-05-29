@@ -228,6 +228,28 @@
         <div class="spiegazione">Una volta impostato il NAT, potrebbe essere necessario impostare un port forwarding in modo da poter accedere dall'esterno ad un server nella rete privata</div>
         <div class="codice">Router(config)# ip nat inside source static [IP Interno] [Porta Interna] [IP esterno] [Porta Esterna]</div>
       </p>
+      <div class="comando">
+        <h3 class="sezione">Impostare il RIP</h3>
+        <div class="spiegazione">Per impostare il RIP, è necessario entrare in modalità di configurazione del RIP</div>
+        <div class="codice">Router(config)# router rip</div>
+        <div class="spiegazione">Eventualmente è possibile attivare il RIPv2 con il seguente comando</div>
+        <div class="codice">Router(config-router)# version 2</div>
+        <div class="spiegazione">Ora è necessario impostare quali reti si vogliono pubblicizzare</div>
+        <div class="codice">Router(config-router)# network [Indirizzo IP]</div>
+        <div class="spiegazione">E' anche possibile impostare delle interfacce passive</div>
+        <div class="codice">Router(config-router)# passive-interface [Interfaccia]</div>
+      </div>
+      <div class="comando">
+        <h3 class="sezione">Diagnostica del routing</h3>
+        <div class="spiegazione">Per attivare il debug del protocollo RIP:</div>
+        <div class="codice">Router# debug ip rip</div>
+        <div class="speigazione">Per mostrare tutte le route ottenute con RIP:</div>
+        <div class="codice">Router# show ip route rip</div>
+        <div class="spiegazione">Per ottenere informazioni sullo stato dei protocolli di routing attivi:</div>
+        <div class="codice">Router# show ip protocols</div>
+        <div class="spiegazione">Per mostrare tutte le informazioni raccolte da RIP:</div>
+        <div class="codice">Router# show ip rip database</div>
+      </div>
 			<!--
       <p class="comando">
         <h3 class="sezione"></h3>
