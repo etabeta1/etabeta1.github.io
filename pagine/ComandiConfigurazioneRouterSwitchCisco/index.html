@@ -225,9 +225,9 @@
         <div class="spiegazione">Prima di tutto bisogna selezionare l'interfaccia che si vuole configurare</div>
         <div class="codice">Router(config)# interface [Interfaccia]</div>
         <div class="spiegazione">poi, se l'interfaccia è rivolta verso la rete privata,</div>
-        <div class="codice">Router(config-interface)# ip nat inside</div>
+        <div class="codice">Router(config-if)# ip nat inside</div>
         <div class="spiegazione">altrimenti, se l'interfacci è rivolta verso una rete pubblica,</div>
-        <div class="codice">Router(config-interface)# ip nat outside</div>
+        <div class="codice">Router(config-if)# ip nat outside</div>
         <div class="spiegazione">Una volta impostato il NAT, potrebbe essere necessario impostare un port forwarding in modo da poter accedere dall'esterno ad un server nella rete privata</div>
         <div class="codice">Router(config)# ip nat inside source static [ProtocolloTrasporto] [IP Interno] [Porta Interna] [IP esterno] [Porta Esterna]</div>
         <div class="spiegazione">il protocollo di trasporto può essere <span class="codice">tcp</span> oppure <span class="codice">udp</span> oppure può essere direttamente omesso.</div>
