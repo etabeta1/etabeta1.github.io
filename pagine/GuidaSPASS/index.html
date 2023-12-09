@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Guida SPASS</title>
+		<script src="/components/Header.js"></script>
+		<link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/comandi.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      pre {
+        margin: 0;
+      }
+      span.codice {
+        display: inline-block;
+      }
+      td {
+        padding: 1px;
+      }
+    </style>
+	</head>
+	<body>
+		<header-component></header-component>
+    <div class="main-body">
+      <h2>Guida SPASS</h2>
+      <p class="comando">
+        <div class="spiegazione">
+          SPASS è un programma che permette di risolvere automaticamente problemi di soddisfacibilità di formule nella logica del primo ordine. <br/>
+          Per poter utilizzare SPASS, è possibile <a href="https://webspass.spass-prover.org/">utilizzare il form online</a> oppure <a href="https://www.mpi-inf.mpg.de/departments/automation-of-logic/software/spass-workbench/classic-spass-theorem-prover/download">scaricarne il codice sorgente</a> per compliarselo da soli. <br/>
+          Se si è scelto di compilare SPASS da soli, consiglio l'utilizzo di VSCode com l'estensione <a href="https://marketplace.visualstudio.com/items?itemName=Ghiiso.spass">Ghiiso.spass</a> per lavorarci. <br/>  
+        </div>
+        <div class="spiegazione">
+          Per fare in modo che SPASS risolva automaticamente un problema nella logica del primo ordine, è necessario descriverlo seguendo alcune regole, che verranno spiegate di seguito. <br/>
+        </div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Scheletro di un problema</h3>
+        <div class="spiegazione">Quello che segue è lo scheletro di un problema comprensibile da SPASS.</div>
+        <div class="codice">
+          <pre>
+begin_problem(ProblemaDiEsempio).
+  list_of_descriptions.
+    name({*Problema di esempio*}).
+    author({*Andrea Oggioni*}).
+    status(unknown).
+    description({*Un problema utilizzato come esempio*}).
+  end_of_list.
+
+  list_of_symbols.
+
+  end_of_list.
+
+  list_of_formulae(axioms).
+
+  end_of_list.
+
+  list_of_formulae(conjectures).
+
+  end_of_list.
+
+  list_of_settings(SPASS).
+  {*
+
+  *}
+  end_of_list.
+end_problem.</pre>
+        </div>
+        <div class="spiegazione">
+          Un problema di SPASS è suddiviso in alcune sezioni. <br/>
+          <ul>
+            <li><span class="codice">list_of_descriptions</span>: contiene le informazioni sul problema;</li>
+            <li><span class="codice">list_of_symbols</span>: contiene i simboli (funzioni e predicati) utilizzati nel problema;</li>
+            <li><span class="codice">list_of_formulae(axioms)</span>: contiene gli assiomi utilizzati da SPASS per risolvere un problema;</li>
+            <li><span class="codice">list_of_formulae(conjectures)</span>: contiene le formule di cui SPASS deve provare la soddisfacibilità o meno;</li>
+            <li><span class="codice">list_of_settings(SPASS)</span>: contiene alcune impostazioni che vanno a modificare il comportamento di SPASS</li>
+          </ul>
+          Ogni istruzione è terminata da un punto. <br/>
+          Le istruzioni possono essere divise in più righe semplicemente andando a capo. <br/>
+          E' possibile inserire dei commenti all'interno del codice utilizzando il simbolo <span class="codice">%</span>, ad esempio <br/>
+          <span class="codice">% Questo è un commento</span> <br/>
+          Le indentazioni non sono necessarie, ma aiutano a rendere il codice più leggibile. <br/>
+        </div>
+        <h3 class="sezione">list_of_descriptions</h3>
+        <div class="spiegazione">
+          In questa sezione, è possibile inserire alcune informazioni (nome del problema, autore, stato e descrizione) sul problema che si sta descrivendo. <br/>
+          <span class="codice">status().</span> accetta solo 3 valori: <span class="codice">satisfiable</span>, <span class="codice">unsatisfiable</span> e <span class="codice">unknown</span>. <br/>
+          Il primo indica che il problema è soddisfacibile, il secondo che non è soddisfacibile e il terzo che non si sa. <br/>
+          SPASS non utilizza questa informazione nella risoluzione del problema.
+        </div>
+        <h3 class="sezione">list_of_symbols</h3>
+        <div class="spiegazione">
+          Questa sezione serve per definire costanti, funzioni e i predicati utilizzati nella descrizione del problema. <br/>
+          Per definire una costante si definisce una funzione con arità 0. <br/>
+          <div class="codice">
+            <pre>
+list_of_symbols.
+  functions[(A, 0), (B, 3)].
+  predicates[(P, 1), (Q, 2)].
+end_of_list.</pre>
+          </div>
+          <div class="spiegazione">
+            Nell'esempio sopra è stata definita una costante <span class="codice">A</span>, una funzione <span class="codice">B</span> con arità 3, un predicato <span class="codice">P</span> con arità 1 e un predicato <span class="codice">Q</span> con arità 2. <br/>
+            Sia <span class="codice">functions[].</span> che <span class="codice">predicates[].</span> sono opzionali ma quando compaiono, devono essere in questo ordine. <br/>
+          </div>
+        </div>
+        <h3 class="sezione">list_of_formulae(axioms) e list_of_formulae(conjectures)</h3>
+        <div class="spiegazione">
+          Queste due sezioni servono per descrivere, rispettivamente, gli assiomi che SPASS utilizzerà per dimostrare il problema e le congetture da dimostrare. <br/>
+          Ogni formula in queste liste è racchiusa dentro <span class="codice">formula().</span>. <br/>
+          Per rappresentare la negazione di una formula si utilizza <span class="codice">not(A)</span>, per la disgiunzione si usa <span class="codice">or(A<sub>1</sub>, A<sub>2</sub>, ..., A<sub>n</sub>)</span>, per la congiunzione si usa <span class="codice">and(A<sub>1</sub>, A<sub>2</sub>, ..., A<sub>n</sub>)</span> e così via. <br/>
+          <center>
+            <table>
+              <thead>
+                <tr>
+                  <th>Simbolo</th>
+                  <th>Equivalente SPASS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>&not; A</td>
+                  <td><span class="codice">not(A)</span></td>
+                </tr>
+                <tr>
+                  <td>A<sub>1</sub> &cap; A<sub>2</sub> &cap; ... &cap; A<sub>n</sub></td>
+                  <td><span class="codice">and(A<sub>1</sub>, A<sub>2</sub>, ..., A<sub>n</sub>)</span></td>
+                </tr>
+                <tr>
+                  <td>A<sub>1</sub> &cup; A<sub>2</sub> &cup; ... &cup; A<sub>n</sub></td>
+                  <td><span class="codice">or(A<sub>1</sub>, A<sub>2</sub>, ..., A<sub>n</sub>)</span></td>
+                </tr>
+                <tr>
+                  <td>A &Implies; B</td>
+                  <td><span class="codice">implies(A, B)</span></td>
+                </tr>
+                <tr>
+                  <td>A &iff; B</td>
+                  <td><span class="codice">equiv(A, B)</span></td>
+                </tr>
+                <tr>
+                  <td>(&forall; x, y, ...)(...)</td>
+                  <td><span class="codice">forall([x, y, ...], ...)</span></td>
+                </tr>
+                <tr>
+                  <td>(&exist; x, y, ...)(...)</td>
+                  <td><span class="codice">exists([x, y, ...], ...)</span></td>
+                </tr>
+                <tr>
+                  <td>A = B</td>
+                  <td><span class="codice">equals(A, B)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </center>
+        </div>
+        <h3 class="sezione">list_of_settings(SPASS)</h3>
+        <div class="spiegazione">
+          Questa sezione non è obbligatoria e permette di modificare il comportamento di SPASS. <br/>
+          <a href="https://webspass.spass-prover.org/help/options.html">A questo link</a> è possibile trovare la lista completa delle opzioni disponibili. <br/>
+          Per lo scopo di questa guida, è sufficiente sapere che il seguente blocco di codice riduce di molto la verbosià dell'output di SPASS evitando di stampare, ad ogni passo della risoluzione, tutte le clausole utilizzate e lasciando solamente la clausola inferta.<br/>
+          <div class="codice">
+            <pre>
+list_of_settings(SPASS).
+{*
+  set_flag(PGiven,1).
+  set_flag(PProblem,0).
+*}
+end_of_list.</pre>
+            </div>
+      </p>
+      <p class="comando">
+        <h3 class="sezione">Output di SPASS</h3>
+        <div class="spiegazione">
+          Se SPASS è riuscito a provere tutte le congetture, allora lo comunicherà nell'output con la seguente riga: <br/>
+        </div>
+        <div class="codice">SPASS beiseite: Proof found.</div>
+        <div class="spiegazione">
+          In caso contrario, verrà stampato il seguente messaggio: <br/>
+        <div class="codice">SPASS beseite: Completion found.</div>
+      </p>
+      <!-- <p class="comando">
+        <h3 class="Esempio"></h3>
+        <div class="spiegazione">
+          Di seguito è riportato un esempio di problema risolvibile da SPASS. <br/>
+
+        </div>
+
+        <div class="codice"></div>
+      </p> -->
+
+
+			<!--
+      <p class="comando">
+        <h3 class="sezione"></h3>
+        <div class="codice"></div>
+        <div class="spiegazione"></div>
+      </p>
+      -->
+      <h6>Correzioni o segnalazioni? Questa guida ti è stata utile per qualcosa? <a href="mailto:andrea.oggioni03@gmail.com">Fammelo sapere!</a></h6>
+    </div>
+	</body>
+</html>

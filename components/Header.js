@@ -104,6 +104,7 @@ headerTemplate.innerHTML = `
 			<span class="header-span">GUIDE</span>
 			<div class="dropdown-content">
 				<a href="../ComandiConfigurazioneRouterSwitchCisco/index.html">Guida ai comandi per la configurazione di switch e router Cisco</a>
+				<a href="../GuidaSPASS/index.html">Guida all'utilizzo di SPASS</a>
 			</div>
 		</span>
 		<span class="header-span"><a href="../curriculum/curriculum.html">CHI SONO</a></span>
