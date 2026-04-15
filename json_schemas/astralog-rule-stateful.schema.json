@@ -1,5 +1,5 @@
 {
-    "$id": "https://example.com/astralog-rule-simple.schema.json",
+    "$id": "https://etabeta1.github.io/json_schemas/astralog-rule-stateful.schema.json",
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
     "properties": {
@@ -11,7 +11,10 @@
         },
         "value": {
             "type": "number"
+        },
+        "consecutive_measurements": {
+            "type": "integer"
         }
     },
-    "required": ["sensor_id", "operator", "value"]
+    "required": ["sensor_id", "operator", "value", "consecutive_measurements"]
 }

@@ -1,5 +1,5 @@
 {
-    "$id": "https://example.com/astralog-rule-step-difference.schema.json",
+    "$id": "https://etabeta1.github.io/json_schemas/astralog-rule-step-difference.schema.json",
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
     "properties": {
