@@ -1,0 +1,17 @@
+{
+    "$id": "https://example.com/astralog-rule-step-difference.schema.json",
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "sensor_id": {
+            "type": "string"
+        },
+        "operator": {
+            "enum": ["<", "<=", ">", ">=", "==", "!="]
+        },
+        "value": {
+            "type": "number"
+        }
+    },
+    "required": ["sensor_id", "operator", "value"]
+}

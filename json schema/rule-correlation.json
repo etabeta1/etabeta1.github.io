@@ -1,0 +1,17 @@
+{
+    "$id": "https://example.com/astralog-rule-correlation.schema.json",
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "logic": {
+            "enum": ["AND", "OR"]
+        },
+        "conditions": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "required": ["logic", "conditions"]
+}
